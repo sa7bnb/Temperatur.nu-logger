@@ -4,11 +4,6 @@ Wifi-ansluten temperaturgivare som rapporterar utetemperaturen till **[temperatu
 Byggd kring en **ESP32-C3 Super Mini** och en eller två **DS18B20**. Ingen display behövs: allt ställs in från mobilen eller datorn via givarens egna webbsidor.
 
 Utvecklad av **A. Isaksson, SA7BNB** — 2026
-
-<p align="center">
-  <img src="docs/images/03-oversikt.png" width="270" alt="Konfigurationssidan, översikt">
-  &nbsp;&nbsp;
-  <img src="docs/images/pcb.png" width="270" alt="Kretskortet">
 </p>
 
 ## Vad den gör
