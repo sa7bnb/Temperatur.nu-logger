@@ -1,10 +1,29 @@
-# TempNuReporter
+# Temperatur.nu-logger
 
 Wifi-ansluten temperaturgivare som rapporterar utetemperaturen till **[temperatur.nu](https://www.temperatur.nu/)**.
 Byggd kring en **ESP32-C3 Super Mini** och en eller två **DS18B20**. Ingen display behövs: allt ställs in från mobilen eller datorn via givarens egna webbsidor.
 
 Utvecklad av **A. Isaksson, SA7BNB** — 2026
+
+<p align="center">
+  <img src="images/03-oversikt.png" width="270" alt="Konfigurationssidan, översikt">
+  &nbsp;&nbsp;
+  <img src="images/pcb.png" width="270" alt="Kretskortet">
 </p>
+
+> *English: Wi-Fi temperature logger for the Swedish weather site temperatur.nu, built on an ESP32-C3 Super Mini with one or two DS18B20 sensors. No display; setup and configuration are done in the browser. Documentation is in Swedish.*
+
+## Ladda ner
+
+| Fil | Innehåll |
+|---|---|
+| [`TempNuReporter.ino`](TempNuReporter.ino) | Firmware: wifi, sensorer, rapportering, webbserver |
+| [`pages.h`](pages.h) | Webbsidorna som givaren visar |
+| [`Manual.pdf`](Manual.pdf) | Användarmanual med bilder |
+| [`pcb.zip`](pcb.zip) | Tillverkningsunderlag för kretskortet |
+| [`Schematic.png`](Schematic.png) | Kopplingsschema |
+
+Hämta allt på en gång med **Code → Download ZIP** uppe till höger.
 
 ## Vad den gör
 
@@ -32,16 +51,17 @@ Sitter två givare på kortet rapporteras bara den som visar **lägst** temperat
 | 1–2 | DS18B20+ temperaturgivare (gärna vattentät kabelmodell) |
 | 1 | Motstånd 4,7 kΩ (pull-up på dataledningen) |
 | 2 | Skruvplint, 3 poler |
-| 1 | Kretskort enligt nedan |
+| 1 | Kretskort, se nedan |
 
 ### Kretskort
 
 Kretskortet är ett bärarkort som ESP32-C3 Super Mini löds fast på. Det har pull-up-motståndet monterat och två skruvplintar, `SENSOR1` och `SENSOR2`, som båda går till samma dataledning.
 
-| Fil | Innehåll |
-|---|---|
-| [`hardware/pcb.zip`](hardware/pcb.zip) | Tillverkningsunderlag (Gerber). Ladda upp filen hos valfri kretskortstillverkare. |
-| [`hardware/Schematic.png`](hardware/Schematic.png) | Kopplingsschema |
+Ladda ner [`pcb.zip`](pcb.zip) och skicka filen till valfri kretskortstillverkare.
+
+<p align="center">
+  <a href="Schematic.png"><img src="Schematic.png" width="600" alt="Kopplingsschema"></a>
+</p>
 
 ### Koppling
 
@@ -63,8 +83,8 @@ Kretskortet är ett bärarkort som ESP32-C3 Super Mini löds fast på. Det har p
 
 1. Installera **Arduino IDE** och ESP32-stödet (Boards Manager: *esp32* från Espressif).
 2. Installera biblioteken **OneWire** (Paul Stoffregen) och **DallasTemperature** (Miles Burton) via Library Manager.
-3. Öppna `TempNuReporter/TempNuReporter.ino`.
-4. Välj inställningar under *Tools*:
+3. Skapa en mapp som heter `TempNuReporter` och lägg `TempNuReporter.ino` och `pages.h` i den. Arduino IDE kräver att mappen har samma namn som `.ino`-filen.
+4. Öppna `TempNuReporter.ino` och välj inställningar under *Tools*:
 
    | Inställning | Värde |
    |---|---|
@@ -85,12 +105,12 @@ Kompilerar mot arduino-esp32 3.3.9.
 5. Registrera stationen på [temperatur.nu/nystation](https://www.temperatur.nu/nystation) med **PIN-koden** från sidan.
 
 <p align="center">
-  <img src="docs/images/01-wifi-natverk.png" width="230" alt="Välj nätverk">
-  <img src="docs/images/02-wifi-losenord.png" width="230" alt="Ange lösenord">
-  <img src="docs/images/04-installningar.png" width="230" alt="Inställningar">
+  <img src="images/01-wifi-natverk.png" width="230" alt="Välj nätverk">
+  <img src="images/02-wifi-losenord.png" width="230" alt="Ange lösenord">
+  <img src="images/04-installningar.png" width="230" alt="Inställningar">
 </p>
 
-Hela genomgången med bilder finns i **[användarmanualen](docs/MANUAL.md)**.
+Hela genomgången med bilder finns i **[användarmanualen (PDF)](Manual.pdf)**.
 
 ## Rapportering till temperatur.nu
 
@@ -112,6 +132,10 @@ Hela genomgången med bilder finns i **[användarmanualen](docs/MANUAL.md)**.
 
 Efter en hård återställning uppträder givaren som en helt ny enhet, både mot temperatur.nu och mot routern. Båda återställningarna finns även som knappar under fliken *Underhåll*.
 
+<p align="center">
+  <img src="images/05-underhall.png" width="270" alt="Underhåll">
+</p>
+
 ## LED
 
 | LED | Betydelse |
@@ -120,15 +144,6 @@ Efter en hård återställning uppträder givaren som en helt ny enhet, både mo
 | Blinkar långsamt vid start | Ansluter till sparat wifi |
 | Kort blink | En rapport skickas |
 | Släckt | Normal drift |
-
-## Filer
-
-| Sökväg | Innehåll |
-|---|---|
-| `TempNuReporter/TempNuReporter.ino` | Firmware: wifi, sensorer, rapportering, webbserver |
-| `TempNuReporter/pages.h` | Webbsidorna |
-| `docs/MANUAL.md` | Användarmanual med bilder |
-| `hardware/` | Kretskortsunderlag och schema |
 
 ## Tack
 
